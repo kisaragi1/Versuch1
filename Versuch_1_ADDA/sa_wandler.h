@@ -10,7 +10,8 @@
 #define SA_WANDLER_H_
 
 
-
+void init_twports(void);
+void tracking_wandler(void);
 
 
 #endif /* SA_WANDLER_H_ */

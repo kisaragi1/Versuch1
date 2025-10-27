@@ -10,7 +10,7 @@
 #include "os_input.h"
 
 
-void init_saports(void) {
+void init_twports(void) {
 	DDRA = 0xFF;
 	PORTA = 0x00;
 	

@@ -6,7 +6,7 @@
 
 #include <avr/io.h>
 #include <stdint.h>
-void init_ports(void);
+void init_r2rports(void);
 void r2r(void);
 
 
