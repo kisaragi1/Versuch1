@@ -22,23 +22,50 @@ void init_twports(void) {
 }
 
 void tracking_wandler(void) {
-	uint8_t r = 0; 
+	uint8_t result = 0; 
 	uint8_t komparator;
 	
 	while(1) {
-		PORTB = r;
-		PORTA = r;
+		PORTB = result;
+		PORTA = result;
 		_delay_ms(50);
 		
-		komparator = PINC & (1 << 1);
+		komparator = PINC & (1 << 0);
 		if(komparator == 0) {
-			if(r < 255) {
-				r++;
-			} else {
-				if (r > 0) {
-					r--;
-				}
+			if(result < 255) {
+				result++;
+			}
+		} else {
+			if (result > 0) {
+				result--;
 			}
 		}
+	}
+}
+
+
+void sa_wandler(void) {
+	uint8_t result=0;
+	uint8_t komparator;
+	for (int8_t i=7; i >= 0; i--) {
+		uint8_t bit_mask = (1 << i);
+		
+		result |= bit_mask;
+		PORTA = result;
+		PORTB = result;
+		_delay_ms(50);
+		
+		//COMP_OUT ablesen
+		komparator = PINC & (1 << 0);
+		
+		// Falls COMP_OUT != 0, ersetze den bit durch 0
+		if(komparator!=0) {
+			result &= ~bit_mask;
+			PORTA = result;
+			PORTB = result;
+			_delay_ms(10);
+		} 
+		PORTA = result;
+		PORTB = result;
 	}
 }

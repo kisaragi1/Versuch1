@@ -12,6 +12,7 @@
 
 void init_twports(void);
 void tracking_wandler(void);
+void sa_wandler(void);
 
 
 #endif /* SA_WANDLER_H_ */
